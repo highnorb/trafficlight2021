@@ -17,11 +17,12 @@ public class TrafficLightCtrl {
 
     private TrafficLightGui gui;
 
-    //COMMENT
+    //Variable for Singleton-Pattern.
     private static TrafficLightCtrl singleton = null;
 
-    //COMMENT. Erstellen eines Objektes sofern es noch keines gibt.
-    //return = bestehendes oder neues Objekt.
+    //checkInstance is being called in the MCP.
+    // It checks, if there is already an object existing. If not, it creates one.
+    //return = existing or new object.
     public static TrafficLightCtrl checkInstance(){
         if(singleton == null){
             singleton = new TrafficLightCtrl();
@@ -36,7 +37,7 @@ public class TrafficLightCtrl {
         gui.setVisible(true);
     }
 
-    //States are initialized.
+    //States are being initialized.
     private void initStates() {
         //TODO create the states and set current and previous state... DONE
 
@@ -79,13 +80,12 @@ public class TrafficLightCtrl {
         gui.run();
     }
 
-    //Aktueller state wird aufgerufen und schaltet weiter.
-    //gui-Objekt rud setLight auf und setzt den currentState dorthin.
-    //sout wäre um mitchecken zu können, wie die states wechseln.
+    //Actual state is being called and switches to the next one.
+    //gui-Object calls setLight and sets currentState.
+    //(sout would have the purpose to visualize the changing states).
     public void nextState() {
         //TODO handle GUi request and update GUI... DONE
-        //Aktuellen State aufrufen (Methode die aktuellen State returned), dann .setNextState und dann...
-        //..Objekt übergeben.
+        //Call actual state (Method, that returns actual state), then set nextState and then hand over object.
 
         getCurrentState().nextState(this);
         gui.setLight(currentState.getState());
