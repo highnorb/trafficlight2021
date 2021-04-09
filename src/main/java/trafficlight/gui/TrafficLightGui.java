@@ -84,7 +84,8 @@ public class TrafficLightGui extends JFrame implements ActionListener {
                 return;
             }
              while (isAutoMode) {
-                 //TODO call the controller
+                 //TODO call the controller... DONE
+                 trafficLightCtrl.nextState();
 
                 try {
                     if (yellow.isOn) {
@@ -112,7 +113,23 @@ public class TrafficLightGui extends JFrame implements ActionListener {
         }
     }
 
+    //
     public void setLight(TrafficLightColor trafficLightColor){
-        //TODO setLight
+        //TODO setLight... DONE
+
+        if(trafficLightColor.equals(TrafficLightColor.RED)){
+           green.turnOn(false);
+           yellow.turnOn(false);
+           red.turnOn(true);
+        } else if(trafficLightColor.equals(TrafficLightColor.YELLOW)) {
+            green.turnOn(false);
+            yellow.turnOn(true);
+            red.turnOn(false);
+        } else if(trafficLightColor.equals(TrafficLightColor.GREEN)) {
+            green.turnOn(true);
+            yellow.turnOn(false);
+            red.turnOn(false);
+        }
     }
+
 }
